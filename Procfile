@@ -1,1 +1,1 @@
-web: gunicorn healthy-diet:app
+web: gunicorn diet-1:app
