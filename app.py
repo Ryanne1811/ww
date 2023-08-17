@@ -6,6 +6,28 @@ import os
 
 app = Flask(__name__)
 
+def verify_signature(request):
+    # 在這裡實作驗證簽名的邏輯，我們假設這個函式可以確認簽名是否有效
+    return True
+
+def process_line_bot_message(message):
+    # 在這裡實作處理 Line Bot 訊息的邏輯
+    pass
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    # 驗證請求
+    if not verify_signature(request):
+        abort(400)  # 驗證失敗，返回狀態碼 400
+
+    # 處理 Line Bot 訊息
+    process_line_bot_message(request.json)
+    
+    return '', 200  # 返回狀態碼 200
+
+if __name__ == '__main__':
+    app.run()
+
 line_bot_api = LineBotApi(os.environ['xuH0c5mdb8a8K0iIrLm0EAjULDMQk9TFCzuYTy8INhX9BQcUBaIZPJ8KLOhYy74tGktVWAAGWE7cQT2O5CvUwCd/i9hwxtAWfNh5iR+pmdu3tYwTo5Q5AmiARLNp1S8IJ86dfnPZj0e/MHOoOLJ+hAdB04t89/1O/w1cDnyilFU='])
 handler = WebhookHandler(os.environ['12e7e0f19d5d084c1423c5c165b30ea1'])
 
@@ -72,3 +94,4 @@ def handle_image_message(event):
 
 if __name__ == "__main__":
     app.run()
+
