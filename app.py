@@ -1,10 +1,14 @@
+
+import os
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
-import os
 
 app = Flask(__name__)
+
+line_bot_api = LineBotApi(os.environ['xuH0c5mdb8a8K0iIrLm0EAjULDMQk9TFCzuYTy8INhX9BQcUBaIZPJ8KLOhYy74tGktVWAAGWE7cQT2O5CvUwCd/i9hwxtAWfNh5iR+pmdu3tYwTo5Q5AmiARLNp1S8IJ86dfnPZj0e/MHOoOLJ+hAdB04t89/1O/w1cDnyilFU='])
+handler = WebhookHandler(os.environ['12e7e0f19d5d084c1423c5c165b30ea1'])
 
 def verify_signature(request):
     # 在這裡實作驗證簽名的邏輯，我們假設這個函式可以確認簽名是否有效
@@ -28,8 +32,6 @@ def webhook():
 if __name__ == '__main__':
     app.run()
 
-line_bot_api = LineBotApi(os.environ['xuH0c5mdb8a8K0iIrLm0EAjULDMQk9TFCzuYTy8INhX9BQcUBaIZPJ8KLOhYy74tGktVWAAGWE7cQT2O5CvUwCd/i9hwxtAWfNh5iR+pmdu3tYwTo5Q5AmiARLNp1S8IJ86dfnPZj0e/MHOoOLJ+hAdB04t89/1O/w1cDnyilFU='])
-handler = WebhookHandler(os.environ['12e7e0f19d5d084c1423c5c165b30ea1'])
 
 
 @app.route("/callback", methods=['POST'])
@@ -53,7 +55,7 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 
-SAVE_PATH = '"C:\aaaaaa\test2\picture"'
+SAVE_PATH = '"D:\aaaaaa\test2\picture"'
 
 @app.route("/callback", methods=['POST'])
 def callback():
